@@ -76,3 +76,7 @@ python simulateur_helpdesk.py
 ## 📄 Licence
 
 Distribué sous licence MIT. Conçu pour la formation des techniciens support et administrateurs systèmes.
+
+## 📸 Aperçu
+
+![Aperçu du simulateur en cours d'appel](docs/demo.png)
