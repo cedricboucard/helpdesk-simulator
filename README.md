@@ -10,6 +10,10 @@
 
 Il simule des appels téléphoniques réalistes avec des utilisateurs en détresse, incarnés par un LLM local (Llama 3.2) et doublés vocalement par Piper TTS. Le technicien doit mener l'enquête, pratiquer l'écoute active, appliquer la méthode de l'entonnoir et diagnostiquer la panne **sans jargon technique**.
 
+## 📸 Aperçu
+
+![Aperçu du simulateur en cours d'appel](docs/demo.png)
+
 ---
 
 ## 🎯 Compétences IT & pédagogie
@@ -76,7 +80,3 @@ python simulateur_helpdesk.py
 ## 📄 Licence
 
 Distribué sous licence MIT. Conçu pour la formation des techniciens support et administrateurs systèmes.
-
-## 📸 Aperçu
-
-![Aperçu du simulateur en cours d'appel](docs/demo.png)
