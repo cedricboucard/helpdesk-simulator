@@ -1,63 +1,55 @@
-# 📞 Helpdesk Simulator — Simulateur d'Appels Support N1/N2 (CLI & IA Locale)
+# Helpdesk Simulator
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Ollama](https://img.shields.io/badge/LLM-Llama_3.2_%28Ollama%29-black.svg)](https://ollama.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+Simulateur d'appels support en ligne de commande.  
+Un LLM local (Ollama + Llama 3.2) incarne l'utilisateur. Tu joues le technicien.
 
-Deux versions coexistent :
+Deux versions :
 
-| Fichier | Description |
-|---------|-------------|
-| **`helpdesk.py`** | Version minimale. Un appel aléatoire, aucun menu, aucune indication. Tu découvres le problème en posant des questions. |
-| **`helpdesk_full.py`** | Version complète. Menu, 6 scénarios, voix Piper TTS. |
+| Fichier | Ce que ça fait |
+|---------|----------------|
+| `helpdesk.py` | **Juste l'appel.** Un problème aléatoire, aucune indication. Tu découvres en posant des questions. |
+| `helpdesk_full.py` | Menu + 6 scénarios + voix Piper. Version d'entraînement complète. |
 
-L'ancienne `simulateur_helpdesk.py` est conservée pour référence.
+L'ancien fichier `simulateur_helpdesk.py` reste pour référence.
 
 ---
 
-## Version minimale (recommandée)
+## Lancer
 
 ```bash
+# Version minimale (recommandée)
 python3 helpdesk.py
-```
 
-Un appel arrive. Un problème caché. Tu poses des questions.
-
-## Version complète
-
-```bash
+# Version complète
 python3 helpdesk_full.py
 ```
-
-Nécessite Piper TTS et le modèle de voix (voir plus bas).
-
----
-
-## Scénarios (version complète)
-
-| Niveau | Titre | Problème |
-|:---:|---|---|
-| 1 | Mot de passe oublié | Caps Lock |
-| 2 | Imprimante inaccessible | Mauvaise imprimante par défaut |
-| 3 | Lecteur réseau | Session SMB expirée |
-| 4 | SQL Server | Service arrêté |
-| 5 | ERP verrouillé | Processus orphelin |
-| 6 | Mode Enfer | Chaos utilisateur |
 
 ## Installation
 
 ```bash
 git clone https://github.com/cedricboucard/helpdesk-simulator.git
 cd helpdesk-simulator
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 ollama pull llama3.2:3b
 ```
 
-Pour la version vocale uniquement :
-- Installer Piper + modèle `fr_FR-siwis-medium.onnx` dans les dossiers `piper/` et `models/`.
+Pour la version vocale uniquement : Piper + modèle `fr_FR-siwis-medium.onnx` dans `piper/` et `models/`.
 
-## Licence
+## Scénarios (version complète)
 
-MIT
+| # | Problème | Cause réelle |
+|---|-----------|---------------|
+| 1 | Mot de passe refusé | Caps Lock |
+| 2 | Imprimante muette | Mauvaise imprimante par défaut |
+| 3 | Lecteur Z inaccessible | Session SMB expirée |
+| 4 | Erreur SQL | Service MSSQLSERVER arrêté |
+| 5 | ERP verrouillé | Processus orphelin |
+| 6 | Chaos total | Dossiers sur le clavier + souris débranchée |
+
+## Philosophie
+
+La version minimale suit l'idée : supprimer ce qui n'est pas nécessaire.  
+Pas de menu. Pas d'indication. Juste l'appel.
+
+MIT License
