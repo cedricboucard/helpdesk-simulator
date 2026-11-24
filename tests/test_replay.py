@@ -40,3 +40,11 @@ class SqlReplayTest(unittest.TestCase):
         self.assertEqual(output.count("Ticket résolu"), 1)
         self.assertLess(output.index("Ticket ouvert"), output.index("Test fonctionnel réussi"))
         self.assertLess(output.index("Test fonctionnel réussi"), output.index("Ticket résolu"))
+
+    def test_quitting_leaves_even_a_verified_ticket_open(self):
+        output = self.play("/relancer", "/facturation", "/quitter")
+
+        self.assertIn("Test fonctionnel réussi", output)
+        self.assertIn("Appel terminé", output)
+        self.assertIn("Le ticket reste ouvert", output)
+        self.assertNotIn("Ticket résolu", output)

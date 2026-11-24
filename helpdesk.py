@@ -137,6 +137,7 @@ def ask(messages, temp):
 def call(problem, replay=None):
     print("\nNouvel appel entrant...\n")
     print(f"Utilisateur :\n{problem['intro']}")
+    print("\nPour raccrocher : /quitter ou Ctrl+C.")
     if replay is not None:
         print(f"\nActions du labo simulé : {REPLAY_COMMANDS}")
 
@@ -149,11 +150,9 @@ def call(problem, replay=None):
         try:
             user = input("\nTechnicien : ").strip()
         except (EOFError, KeyboardInterrupt):
-            print("\nAppel terminé.")
             break
 
-        if not user or user.lower() in ("q", "quitter", "exit", "fin"):
-            print("\nAppel terminé.")
+        if not user or user.lower() in ("/quitter", "q", "quitter", "exit", "fin"):
             break
 
         if replay is not None and user.startswith("/"):
@@ -161,7 +160,7 @@ def call(problem, replay=None):
             if command == "/cloturer":
                 if replay.verified:
                     print("\nTicket résolu · Service MSSQLSERVER rétabli · Facturation vérifiée.")
-                    break
+                    return
                 print("\nTicket ouvert. La facturation doit être vérifiée avant clôture.")
                 continue
             print(f"\nLabo : {replay.run(command)}")
@@ -169,9 +168,16 @@ def call(problem, replay=None):
             continue
 
         messages.append({"role": "user", "content": user})
-        reply = ask(messages, problem["temp"])
+        try:
+            reply = ask(messages, problem["temp"])
+        except KeyboardInterrupt:
+            break
         print(f"\nUtilisateur :\n{reply}")
         messages.append({"role": "assistant", "content": reply})
+
+    print("\nAppel terminé.")
+    if replay is not None:
+        print("Le ticket reste ouvert.")
 
 
 def main():

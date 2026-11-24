@@ -98,7 +98,7 @@ def run_scenario(choice: str):
     print(f"📞 SCÉNARIO : {sc['title']}")
     print("="*65)
     print("Astuce : écoutez bien les symptômes et guidez l'utilisateur pas à pas.")
-    print("Tapez 'quitter' à tout moment pour revenir au menu.\n")
+    print("Tapez /quitter pour raccrocher et revenir au menu.\n")
 
     messages = [{"role": "system", "content": sc['system_prompt']}]
 
@@ -114,7 +114,7 @@ def run_scenario(choice: str):
         except (KeyboardInterrupt, EOFError):
             break
 
-        if tech_input.strip().lower() in ["quitter", "exit"]:
+        if tech_input.strip().lower() in ("/quitter", "quitter", "exit"):
             print("\n📞 Appel terminé.")
             break
 

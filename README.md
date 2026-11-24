@@ -50,6 +50,8 @@ python3 helpdesk.py
 python3 helpdesk_full.py
 ```
 
+Pendant un appel, tape `/quitter` pour raccrocher. La version minimale revient au terminal et la version complète revient au menu. Dans Panne Replay, `/quitter` laisse le ticket ouvert. Utilise `/cloturer` après avoir vérifié le retour de la facturation.
+
 ## Installation
 
 ```bash
